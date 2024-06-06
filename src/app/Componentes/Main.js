@@ -1,8 +1,8 @@
 import Image from "next/image";
-import styles from "";
+import styles from "./main.module.css";
 
 export default async function Home() {
-    const response = await fetch("https://api.escuelajs.co/api/v1/products")
+    const response = await fetch("https://fakestoreapi.com/products")
     const data = await response.json();
 
   return (
@@ -14,7 +14,7 @@ export default async function Home() {
           <Image  
             width={100} 
             height={100} 
-            src=""
+            src={produtos.image}
           />
        </div>
     )};   
