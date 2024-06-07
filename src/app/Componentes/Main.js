@@ -9,8 +9,11 @@ export default async function Home() {
     <main className={styles.main}>
       {data.map((produtos) =>
        <div className={styles.card} key={produtos.id}>  
-          <p>{produtos.title}</p>
-          <p>{produtos.price}</p>
+          <h3>{produtos.title}</h3>
+          <h4>R$: {produtos.price}</h4>
+          <p>Descrição: {produtos.description}</p>
+          <p>Categoria: {produtos.category}</p>
+          <p>Estoque: {produtos.rating.count}</p>
           <Image  
             width={100} 
             height={100} 

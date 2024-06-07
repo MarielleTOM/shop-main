@@ -1,8 +1,8 @@
 .cabecalho{
     display: flex;
     flex-direction: row;
-    align-items: center; /* Alinha itens verticalmente ao centro */
-    justify-content: space-between; /* Distribui os itens com espaço igual entre eles */
+    align-items: center; 
+    justify-content: space-between; 
     padding: 10px 20px;
     background-color: #f8f9fa;
     border-bottom: 1px solid #e9ecef;
@@ -28,6 +28,6 @@
     transition: background-color 0.3s, color 0.3s;
 }
 .botao:hover{
-    background-color: black; /* Fundo preto ao passar o mouse */
-    color: white; /* Texto branco ao passar o mouse */
+    background-color: black; 
+    color: white; 
 }
