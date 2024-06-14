@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./main.module.css";
+import Spinner from "./Spinner";
 
 export default function Home() {
 
@@ -29,6 +30,10 @@ export default function Home() {
     );
     newList = newList.reverse();
     setListaProdudt(newList);
+  }
+
+  if (listaProduct[0]==null){
+    return <Spinner/>
   }
 
   return (
