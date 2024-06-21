@@ -7,12 +7,15 @@ import Spinner from "./Spinner";
 export default function Home() {
 
   const [listaProduct, setListaProdudt] = useState ([]);
+  const [listComplete, setListComplete] = useState ([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const getProtucts = async () =>{
       const response = await fetch("https://fakestoreapi.com/products")
       const data = await response.json();
       setListaProdudt(data);
+      setListComplete(data);
     };
     getProtucts();
   }, []);
@@ -32,13 +35,32 @@ export default function Home() {
     setListaProdudt(newList);
   }
 
+ 
+
+  const searchText = (text) => {
+    setSearch(text);
+
+    if(text.trim()==""){
+      setListaProdudt(listComplete);
+      return
+    }
+
+    const newList = listaProduct.filter((produtos)=>
+      produtos.title.toUpperCase().trim().includes(search.toUpperCase().trim()))
+    setListaProdudt(newList);
+  }
+
   if (listaProduct[0]==null){
     return <Spinner/>
   }
 
+
+
   return (
     <>
     <div>
+      <input type="text" value={search} placeholder="Pesquise o produto!" 
+      onChange={(event)=> searchText(event.target.value)}/>
       <button onClick={orderAz}>A-Z</button>
       <button onClick={orderZa}>Z-A</button>
     </div>
