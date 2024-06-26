@@ -3,19 +3,25 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./main.module.css";
 import Spinner from "./Spinner";
+import ErrorGetData from "./ErrorGetData";
 
 export default function Home() {
 
   const [listaProduct, setListaProdudt] = useState ([]);
-  const [listComplete, setListComplete] = useState ([]);
+  const [listaComplete, setListaComplete] = useState ([]);
   const [search, setSearch] = useState("");
+  const [errorFatch, setErrorFatch] = useState (false);
 
   useEffect(() => {
     const getProtucts = async () =>{
-      const response = await fetch("https://fakestoreapi.com/products")
-      const data = await response.json();
-      setListaProdudt(data);
-      setListComplete(data);
+      try {
+        const response = await fetch("https://fakestoreapi.com/product")
+        const data = await response.json();
+        setListaProdudt(data);
+        setListaComplete(data);
+      }catch{
+        setErrorFatch(true);
+      }
     };
     getProtucts();
   }, []);
@@ -41,7 +47,7 @@ export default function Home() {
     setSearch(text);
 
     if(text.trim()==""){
-      setListaProdudt(listComplete);
+      setListaProdudt(listaComplete);
       return
     }
 
@@ -50,7 +56,11 @@ export default function Home() {
     setListaProdudt(newList);
   }
 
-  if (listaProduct[0]==null){
+  if(errorFatch == true){
+    return <ErrorGetData/>
+  }
+
+  if (listaComplete[0]==null){
     return <Spinner/>
   }
 
